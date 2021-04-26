@@ -1,0 +1,137 @@
+:root {
+    --primary: #8a4fff;
+    --dark: #131a26;
+    --grey: #ccc;
+    --light: #eee;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: 'Fira sans', sans-serif;
+}
+
+body {
+    background-color: var(--light);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: var(--dark);
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px solid var(--primary);
+}
+
+header h1 {
+    color: #fff;
+    font-size: 42px;
+    text-transform: uppercase;
+    text-shadow: -4px 1px var(--primary);
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 0%;
+}
+
+.field {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+}
+
+.box {
+    position: relative;
+    border: 1px solid var(--dark);
+    width: 100px;
+    padding-top: 100%;
+    cursor: pointer;
+}
+
+.box:nth-child(1),
+.box:nth-child(2),
+.box:nth-child(3) {
+    border-top: none;
+}
+
+.box:nth-child(1),
+.box:nth-child(4),
+.box:nth-child(7) {
+    border-left: none;
+}
+
+.box:nth-child(3),
+.box:nth-child(6),
+.box:nth-child(9) {
+    border-right: none;
+}
+
+.box:nth-child(7),
+.box:nth-child(8),
+.box:nth-child(9) {
+    border-bottom: none;
+}
+
+.box.x,
+.box.o {
+    cursor: not-allowed;
+}
+
+
+.box.x:after,
+.box.x:before,
+.field.turn-x .box:not(.x):not(.o):hover:after,
+.field.turn-x .box:not(.x):not(.o):hover:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 90px;
+    background-color: var(--dark);
+    border-radius: 99px;
+}
+
+.box.x:before,
+.field.turn-x .box:not(.x):not(.o):hover:before {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+.box.x:after,
+.field.turn-x .box:not(.x):not(.o):hover:after {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.box.o:before,
+.field.turn-o .box:not(.x):not(.o):hover:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    border: 10px solid var(--dark);
+    border-radius: 50%;
+}
+
+.field.turn-x .box:not(.x):not(.o):hover:after,
+.field.turn-x .box:not(.x):not(.o):hover:before {
+    background-color: var(--grey);
+    border-radius: 99px;
+}
+
+.field.turn-o .box:not(.x):not(.o):hover:before {
+    border-color: var(--grey)
+}
+
+
